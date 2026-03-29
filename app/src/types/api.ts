@@ -3,7 +3,9 @@
 import type { AnimalReport } from "./report";
 
 export interface JSONBinFetchRes {
-  reports: AnimalReport[];
+  records: {
+    reports: AnimalReport[];
+  }
   metadata: {
     id: string;
     private: boolean;
@@ -14,7 +16,9 @@ export interface JSONBinFetchRes {
 
 // Interface for updates (PUT)
 export interface JSONBinUpdateRes {
-  reports: AnimalReport[];
+  records: {
+    reports: AnimalReport[];
+  }
   metadata: {
     parentId: string;
     private: boolean;

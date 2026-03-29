@@ -9,12 +9,13 @@ Header: X-Master-key: YOUR_MASTER_API
 
 Example output:
 {
-    "record": "Hello world",
+    "record": {
+        "sample": "Hello world"
+    },
     "metadata": {
-        "id": "69sbcnmwcnmsbnmsl",
+        "id": "69c8f02c6860e0745bff67d6",
         "private": true,
-        "createdAt": "2026-03-29T04:34:42.834Z",
-        "name": "CMPT276"
+        "createdAt": "2026-03-29T09:26:04.540Z"
     }
 }
 
@@ -32,9 +33,11 @@ Body(Example):
 
 Example output: 
 {
-    "sample": "Hello world",
+    "record": {
+        "sample": "Hello world"
+    },
     "metadata": {
-        "parentId": "69c8abe25fdde574550d39bsdsdsds",
+        "parentId": "69c8f02c6860e0745bff67d6",
         "private": true
     }
 }
