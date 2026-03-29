@@ -1,5 +1,8 @@
-# Base URL
-https://nominatim.openstreetmap.org/reverse?format=json&lat=-34.44076&lon=-58.70521
+# Endpoint: Reverse Geocoding
+https://nominatim.openstreetmap.org/reverse
+
+# Query Parameters:
+?format=json&lat=<value>&lon=<value>&zoom=<value>&addressdetails=1
 
 # Example Response: 
 {

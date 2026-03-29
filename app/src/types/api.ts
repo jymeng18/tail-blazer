@@ -61,21 +61,21 @@ export interface ImgBBUploadRes {
 }
 
 export interface NominatimReverseGeocodeRes {
-  place_id: number;
-  licence: string;
-  osm_type: string;
-  osm_id: number;
-  lat: string;
-  lon: string;
-  class: string;
-  type: string;
-  place_rank: number;
-  importance: number;
-  addresstype: string;
-  name: string;
-  display_name: string;
-  address: {
-    [key: string]: string; // The keys in the address object can vary, so we use an index signature
+  display_name: string; // always present, the only one you actually use
+  place_id?: number;
+  licence?: string;
+  osm_type?: string;
+  osm_id?: number;
+  lat?: string;
+  lon?: string;
+  class?: string;
+  type?: string;
+  place_rank?: number;
+  importance?: number;
+  addresstype?: string;
+  name?: string;
+  address?: {
+    [key: string]: string;
   };
-  boundingbox: [string, string, string, string];
+  boundingbox?: [string, string, string, string];
 }
