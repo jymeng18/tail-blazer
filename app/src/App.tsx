@@ -1,13 +1,14 @@
 import './App.css'
-import ReportForm from './components/ReportForm'
-import { BrowserRouter } from 'react-router-dom'
+import ReportPage from './pages/ReportPage'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
 
   return (
     <BrowserRouter>
-      
-    
+      <Routes>
+        <Route path='/' element={<ReportPage />}/>          
+      </Routes>
     </BrowserRouter>
   )
 }
