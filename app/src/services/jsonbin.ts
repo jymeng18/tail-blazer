@@ -34,9 +34,12 @@ export async function getReports(): Promise<AnimalReport[]> {
   }
 
   const data: JSONBinFetchRes = await res.json();
+
+  // Important: JSON Bin will return a { record: reports: []} JSON object 
   return data.records.reports;
 }
 
+// For when user submits a animal report form
 export async function saveReport(report: AnimalReport): Promise<void> {
   if (!report) {
     throw new Error("Report is not valid.");
@@ -61,7 +64,7 @@ export async function saveReport(report: AnimalReport): Promise<void> {
 export async function updateReport(updated: AnimalReport): Promise<void> {
   const reports = await getReports();
   const newReports = reports.map((r) => (r.id === updated.id ? updated : r));
-  
+
   const res = await fetch(`${JSONBIN_BASE_URL}/b/${JSONBIN_BIN_ID}`, {
     method: "PUT",
     headers: getHeaders(),
