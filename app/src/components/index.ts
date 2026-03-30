@@ -1,3 +1,3 @@
 export { default as ReportForm } from "./ReportForm";
-export { default as ReportMap } from "./ReportMap"
+export { default as MapPage } from "./MapPage"
 export { default as Navbar } from "./Navbar"

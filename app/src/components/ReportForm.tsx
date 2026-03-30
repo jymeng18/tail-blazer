@@ -4,8 +4,8 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AnimalType, type ReportFormData } from "../types";
-import { reverseGeocode } from "../services";
+import { AnimalType, ReportStatus, type ReportFormData } from "../types";
+import { reverseGeocode, saveReport, uploadImage, hashPassword } from "../services";
 import LocationPicker from "./LocationPicker";
 
 function ReportForm() {
@@ -63,12 +63,75 @@ function ReportForm() {
     }
   }
 
+  // Handle form submission - must be async
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    // Photo can be optional, not every user has photos of their pet
+    if (
+      !formData.animalName ||
+      !formData.animalType ||
+      !formData.contactInfo ||
+      !formData.desc ||
+      !formData.location ||
+      !formData.password
+    ) {
+      setError("Please fill in all required form fields.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      // Upload image if provided, otherwise use empty string
+      let imgURL = "";
+      if (formData.photo) {
+        imgURL = await uploadImage(formData.photo);
+      }
+
+      // Hash the password before storing
+      const hashedPassword = await hashPassword(formData.password);
+
+      // Save report to JSONBin
+      await saveReport({
+        id: crypto.randomUUID(),
+        animalName: formData.animalName,
+        animalType: formData.animalType,
+        animalPhotoURL: imgURL,
+        desc: formData.desc,
+        contactInfo: formData.contactInfo,
+        location: formData.location,
+        passwordHash: hashedPassword,
+        status: ReportStatus.Lost,
+        createdAt: new Date().toISOString(),
+      });
+
+      // Navigate to home page on success
+      navigate("/");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to submit report. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <section className="container mt-4">
       <h2>Report a Lost Pet</h2>
 
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+
       {/* Pet Name */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">Animal Name</label>
           <input
@@ -162,7 +225,9 @@ function ReportForm() {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary"></button>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? "Submitting..." : "Submit Report"}
+        </button>
       </form>
     </section>
   );
