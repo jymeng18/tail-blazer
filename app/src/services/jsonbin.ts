@@ -7,12 +7,10 @@ import type { AnimalReport, JSONBinFetchRes } from "../types";
 
 const JSONBIN_BASE_URL = "https://api.jsonbin.io/v3";
 const JSONBIN_BIN_ID = import.meta.env.VITE_JSONBIN_BIN_ID;
-const JSONBIN_API_KEY = import.meta.env.VITE_JSONBIN_API_KEY;
 
 function getHeaders(): HeadersInit {
   return {
     "Content-Type": "application/json",
-    "X-Master-key": JSONBIN_API_KEY,
   };
 }
 
@@ -35,8 +33,8 @@ export async function getReports(): Promise<AnimalReport[]> {
 
   const data: JSONBinFetchRes = await res.json();
 
-  // Important: JSON Bin will return a { record: reports: []} JSON object 
-  return data.records.reports;
+  // Important: JSON Bin will return a { record: reports: []} JSON object
+  return data.record.reports;
 }
 
 // For when user submits a animal report form
