@@ -5,6 +5,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimalType, type ReportFormData } from "../types";
+import { reverseGeocode } from "../services";
+import LocationPicker from "./LocationPicker";
 
 function ReportForm() {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ function ReportForm() {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>("");
+  const [addressPreview, setAddressPreview] = useState<string>("");
 
   // form fields are changed
   function handleInputChange(
@@ -32,13 +35,31 @@ function ReportForm() {
     setFormData({ ...formData, [name]: value });
   }
 
-  function handleFileChange(
-    e: React.ChangeEvent<HTMLInputElement>,
-  ): void {
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>): void {
     const files = e.target.files;
 
-    if(files && files.length > 0){
-      setFormData({ ...formData, photo: files[0]});
+    if (files && files.length > 0) {
+      setFormData({ ...formData, photo: files[0] });
+    }
+  }
+
+  async function handleLocationSelect(lat: number, lng: number): Promise<void> {
+    try {
+      // reverseGeocode retuns only the address/name of the location
+      const address = await reverseGeocode(lat, lng);
+      setAddressPreview(address);
+
+      // Update form, location expects Location | null object
+      setFormData({
+        ...formData,
+        location: {
+          lat: lat,
+          lon: lng,
+          address: address,
+        },
+      });
+    } catch {
+      setError("Failed to get address for location.");
     }
   }
 
@@ -117,6 +138,14 @@ function ReportForm() {
           <label className="form-label">
             Last Seen Location (click on map)
           </label>
+          <LocationPicker onLocationSelection={handleLocationSelect} />
+
+          {/* If addressPreview is falsy then dont render this */}
+          {addressPreview ? (
+            <div className="mt-2 text-muted">
+              <strong>Selected Address:</strong> {addressPreview}
+            </div>
+          ) : null}
         </div>
 
         {/* Password For Post */}
