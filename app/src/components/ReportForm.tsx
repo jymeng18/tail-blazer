@@ -19,6 +19,9 @@ function ReportForm() {
     password: "",
   });
 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>("");
+
   // form fields are changed
   function handleInputChange(
     e: React.ChangeEvent<
@@ -29,10 +32,21 @@ function ReportForm() {
     setFormData({ ...formData, [name]: value });
   }
 
+  function handleFileChange(
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void {
+    const files = e.target.files;
+
+    if(files && files.length > 0){
+      setFormData({ ...formData, photo: files[0]});
+    }
+  }
+
   return (
-    <div className="container mt-4">
+    <section className="container mt-4">
       <h2>Report a Lost Pet</h2>
 
+      {/* Pet Name */}
       <form>
         <div className="mb-3">
           <label className="form-label">Animal Name</label>
@@ -45,6 +59,7 @@ function ReportForm() {
           />
         </div>
 
+        {/* Pet Type */}
         <div className="mb-3">
           <label className="form-label">Animal Type</label>
           <select
@@ -61,16 +76,18 @@ function ReportForm() {
           </select>
         </div>
 
+        {/* Pet Photo */}
         <div className="mb-3">
           <label className="form-label">Photo</label>
           <input
             type="file"
             className="form-control"
             accept="image/*"
-            onChange={handleInputChange}
+            onChange={handleFileChange}
           />
         </div>
 
+        {/* Pet Desc */}
         <div className="mb-3">
           <label className="form-label">Description</label>
           <textarea
@@ -82,6 +99,7 @@ function ReportForm() {
           />
         </div>
 
+        {/* Owner Contact Info */}
         <div className="mb-3">
           <label className="form-label">Contact Information</label>
           <input
@@ -94,12 +112,14 @@ function ReportForm() {
           />
         </div>
 
+        {/* Leaflet Map */}
         <div className="mb-3">
           <label className="form-label">
             Last Seen Location (click on map)
           </label>
         </div>
 
+        {/* Password For Post */}
         <div className="mb-3">
           <label className="form-label">
             Password (to mark as found later)
@@ -115,7 +135,7 @@ function ReportForm() {
 
         <button type="submit" className="btn btn-primary"></button>
       </form>
-    </div>
+    </section>
   );
 }
 

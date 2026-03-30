@@ -1,9 +1,14 @@
 import './App.css'
+import ReportForm from './components/ReportForm'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
 
   return (
-    <h1>Hello</h1>
+    <BrowserRouter>
+      
+    
+    </BrowserRouter>
   )
 }
 
