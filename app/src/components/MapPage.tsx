@@ -2,32 +2,21 @@
  * Entire map page including reports 
  */
 
-import { useEffect, useState } from "react";
-import type { AnimalReport } from "../types";
-import { getReports } from "../services";
+import { useReports } from "../hooks";
 import ReportMap from "./ReportMap";
 
 function MapPage() {
-  const [reports, setReports] = useState<AnimalReport[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const { reports, error } = useReports();
 
-  useEffect(() => {
-    async function loadReports(){
-      try {
-        const data = await getReports();
-        setReports(data);
-      } catch(err) {
-        setError("Failed to load reports.");
-      }
-    }
+  if (error) {
+    return (
+      <div className="container mt-4">
+        <div className="alert alert-danger">{error}</div>
+      </div>
+    );
+  }
 
-    loadReports();
-  }, []); // run once on mount 
-
-  if(error) console.log('error')
-
-  return <ReportMap reports={reports} />
-
+  return <ReportMap reports={reports} />;
 }
 
 export default MapPage;

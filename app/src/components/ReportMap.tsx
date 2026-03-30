@@ -19,7 +19,7 @@ function ReportMap({ reports }: ReportMapProps) {
     <MapContainer
       center={[51.505, -0.09]}
       zoom={12}
-      style={{ height: "500px", width: "100%" }}
+      style={{ height: "900px", width: "100%" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -38,15 +38,17 @@ function ReportMap({ reports }: ReportMapProps) {
           >
             <Popup>
               <div style={{ textAlign: "center" }}>
-                <img
-                  src={report.animalPhotoURL}
-                  alt={report.animalName}
-                  style={{
-                    width: "100px",
-                    height: "100px",
-                    objectFit: "cover",
-                  }}
-                />
+                {report.animalPhotoURL && (
+                  <img
+                    src={report.animalPhotoURL}
+                    alt={report.animalName}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                    }}
+                  />
+                )}
                 <h6>{report.animalName}</h6>
                 <p>Type: {report.animalType}</p>
                 <Link to={`/report/${report.id}`}>View Details</Link>
