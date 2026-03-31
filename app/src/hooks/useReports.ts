@@ -16,6 +16,7 @@ export function useReports() {
         setError(null);
       } catch (err) {
         setError(
+          // We have custom err msgs thrown for api errors, otherwise use default msg
           err instanceof Error ? err.message : "Failed to load reports."
         );
       } finally {

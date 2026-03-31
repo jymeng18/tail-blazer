@@ -1,7 +1,6 @@
 /**
- * Displays all report fields,
- * allows users to Mark as Found given
- * they have the password
+ * Display all report fields for a specific entry
+ * based off of their id
  */
 
 import { useState } from "react";
