@@ -1,0 +1,31 @@
+.view-toggle-section {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  background: #f0f8ff;
+}
+
+.view-toggle-btn {
+  padding: 0.8rem 2rem;
+  background: #87ceeb;
+  color: #ffffff;
+  border: 2px solid #6fb6d9;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(135, 206, 235, 0.3);
+}
+
+.view-toggle-btn:hover {
+  background: #6fb6d9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(135, 206, 235, 0.4);
+}
+
+.view-toggle-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(135, 206, 235, 0.3);
+}

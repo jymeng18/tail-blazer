@@ -195,7 +195,7 @@ function ReportDetails() {
         </div>
       )}
 
-      <div style={{ marginTop: "2rem" }}>
+      <div className="back-button-container">
         <button
           className="btn-back"
           onClick={() => navigate("/")}
