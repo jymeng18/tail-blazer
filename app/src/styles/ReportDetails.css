@@ -1,0 +1,236 @@
+.report-details-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 3px solid #a9d6e5;
+  box-shadow: 0 4px 10px rgba(135, 206, 235, 0.2);
+}
+
+.report-details-container h2 {
+  color: #5dade2;
+  margin-bottom: 1.5rem;
+  font-size: 2.4rem;
+  font-weight: 900;
+}
+
+.report-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  border: 3px solid #d6eaf8;
+  box-shadow: 0 2px 8px rgba(214, 234, 248, 0.4);
+}
+
+.detail-field {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: #ebf5fb;
+  border-radius: 12px;
+  border: 2px dashed #85c1e9;
+}
+
+.detail-field strong {
+  color: #3498db;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 900;
+}
+
+.detail-field p {
+  margin: 0;
+  color: #576574;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-badge.lost {
+  background: #ff6b6b;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(255, 107, 107, 0.3);
+}
+
+.status-badge.found {
+  background: #1dd1a1;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(29, 209, 161, 0.3);
+}
+
+.password-prompt-container {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  border: 2px solid #a9d6e5;
+  border-radius: 16px;
+  background: #f0f8ff;
+  box-shadow: 0 2px 8px rgba(169, 214, 229, 0.3);
+}
+
+.password-prompt-container h5 {
+  color: #5dade2;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.password-input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #85c1e9;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.password-error {
+  padding: 1rem;
+  background: #ff4757;
+  color: #ffffff;
+  border-radius: 12px;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-confirm {
+  flex: 1;
+  padding: 1.2rem;
+  background: #1dd1a1;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(29, 209, 161, 0.3);
+  transition: all 0.1s ease;
+}
+
+.btn-confirm:hover:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(29, 209, 161, 0.3);
+}
+
+.btn-confirm:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(29, 209, 161, 0.3);
+}
+
+.btn-confirm:disabled {
+  background: #d6eaf8;
+  box-shadow: 0 3px 8px rgba(214, 234, 248, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 1.2rem;
+  background: #fdfdfd;
+  color: #576574;
+  border: 2px solid #d6eaf8;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(214, 234, 248, 0.4);
+  transition: all 0.1s ease;
+}
+
+.btn-cancel:hover {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(214, 234, 248, 0.4);
+}
+
+.btn-cancel:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 rgba(214, 234, 248, 0.4);
+}
+
+.btn-mark-found {
+  padding: 1rem 2rem;
+  background: #1dd1a1;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(29, 209, 161, 0.3);
+  transition: all 0.1s ease;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-mark-found:hover {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(29, 209, 161, 0.3);
+}
+
+.btn-mark-found:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(29, 209, 161, 0.3);
+}
+
+.btn-back {
+  padding: 1rem 2rem;
+  background: #ffffff;
+  color: #576574;
+  border: 2px solid #d6eaf8;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(214, 234, 248, 0.4);
+  transition: all 0.1s ease;
+  margin-top: 1rem;
+}
+
+.btn-back:hover {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(214, 234, 248, 0.4);
+}
+
+.btn-back:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 rgba(214, 234, 248, 0.4);
+}
+
+.not-found-message, .error-message {
+  padding: 2.5rem;
+  background: #ff9f43;
+  color: #ffffff;
+  border-radius: 20px;
+  font-weight: 900;
+  font-size: 1.4rem;
+  text-align: center;
+  margin: 3rem auto;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3);
+  border: 3px solid #ff7f50;
+}

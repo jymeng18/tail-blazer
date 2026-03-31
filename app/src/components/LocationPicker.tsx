@@ -6,6 +6,7 @@
 import type { LatLngExpression } from "leaflet";
 import { useState } from "react";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
+import "../styles/LocationPicker.css";
 
 interface LocationPickerProps {
   onLocationSelection: (lat: number, lon: number) => void;
@@ -36,7 +37,7 @@ function LocationPicker({ onLocationSelection }: LocationPickerProps) {
     <MapContainer
       center={[51.505, -0.09]}
       zoom={12}
-      style={{ height: "300px", width: "100%" }}
+      className="location-picker-container"
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

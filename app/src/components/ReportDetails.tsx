@@ -9,6 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useReports } from "../hooks";
 import { ReportStatus } from "../types";
 import { hashPassword, updateReport } from "../services";
+import "../styles/ReportDetails.css";
 
 function ReportDetails() {
   const { id } = useParams<{ id: string }>();
@@ -22,16 +23,17 @@ function ReportDetails() {
 
   if (loading) {
     return (
-      <div className="container mt-4">
+      <div className="report-details-container">
         <p>Loading...</p>
       </div>
     );
   }
 
+  // TODO: Use a Bootstrap alert instead.
   if (error) {
     return (
-      <div className="container mt-4">
-        <div className="alert alert-danger">{error}</div>
+      <div className="report-details-container">
+        <div className="error-message">{error}</div>
       </div>
     );
   }
@@ -41,9 +43,9 @@ function ReportDetails() {
 
   if (!report) {
     return (
-      <div className="container mt-4">
-        <div className="alert alert-warning">Report not found.</div>
-        <button className="btn btn-primary" onClick={() => navigate("/")}>
+      <div className="report-details-container">
+        <div className="not-found-message">Report not found.</div>
+        <button className="btn-back" onClick={() => navigate("/")}>
           Back to Home
         </button>
       </div>
@@ -89,43 +91,43 @@ function ReportDetails() {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="report-details-container">
       <h2>{report.animalName}</h2>
 
       {report.animalPhotoURL && (
-        <div className="mb-3">
-          <img
-            src={report.animalPhotoURL}
-            alt={report.animalName}
-            className="img-fluid"
-            style={{ maxHeight: "400px", objectFit: "cover" }}
-          />
-        </div>
+        <img
+          src={report.animalPhotoURL}
+          alt={report.animalName}
+          className="report-image"
+        />
       )}
 
       {/* Animal type */}
-      <div className="mb-3">
-        <strong>Type:</strong> {report.animalType}
+      <div className="detail-field">
+        <strong>Type:</strong>
+        <p>{report.animalType}</p>
       </div>
       
       {/* Pet status, found or lost */}
-      <div className="mb-3">
-        <strong>Status:</strong>{" "}
-        <span
-          className={`badge ${report.status === ReportStatus.Lost ? "bg-danger" : "bg-success"}`}
-        >
-          {report.status}
-        </span>
+      <div className="detail-field">
+        <strong>Status:</strong>
+        <p>
+          <span
+            className={`status-badge ${report.status === ReportStatus.Lost ? "lost" : "found"}`}
+          >
+            {report.status}
+          </span>
+        </p>
       </div>
 
       {/* Pet desc */}
-      <div className="mb-3">
+      <div className="detail-field">
         <strong>Description:</strong>
         <p>{report.desc}</p>
       </div>
 
       {/* owner contacts */}
-      <div className="mb-3">
+      <div className="detail-field">
         <strong>Contact Information:</strong>
         <p>{report.contactInfo}</p>
       </div>
@@ -133,21 +135,21 @@ function ReportDetails() {
 
       {/* Report location may be null if user marks middle of nowhere on map */}
       {report.location && (
-        <div className="mb-3">
+        <div className="detail-field">
           <strong>Last Seen Location:</strong>
           <p>{report.location.address}</p>
         </div>
       )}
 
       {/* date of post */}
-      <div className="mb-3">
+      <div className="detail-field">
         <strong>Date Posted:</strong>
         <p>{new Date(report.createdAt).toLocaleDateString()}</p>
       </div>
 
       {report.status === ReportStatus.Lost && !showPasswordPrompt && (
         <button
-          className="btn btn-success"
+          className="btn-mark-found"
           onClick={() => setShowPasswordPrompt(true)}
         >
           Mark as Found
@@ -157,45 +159,46 @@ function ReportDetails() {
       
       {/* User has attempted to mark as found */}
       {showPasswordPrompt && (
-        <div className="mt-3 p-3 border rounded">
+        <div className="password-prompt-container">
           <h5>Enter Password to Mark as Found</h5>
           {passwordError && (
-            <div className="alert alert-danger">{passwordError}</div>
+            <div className="password-error">{passwordError}</div>
           )}
-          <div className="mb-3">
+          <div className="password-input-wrapper">
             <input
               type="password"
-              className="form-control"
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <button
-            className="btn btn-success me-2"
-            onClick={handleMarkAsFound}
-            disabled={updating}
-          >
-            {updating ? "Updating..." : "Confirm"}
-          </button>
+          <div className="button-group">
+            <button
+              className="btn-confirm"
+              onClick={handleMarkAsFound}
+              disabled={updating}
+            >
+              {updating ? "Updating..." : "Confirm"}
+            </button>
 
-          <button
-            className="btn btn-secondary"
-            onClick={() => {
-              setShowPasswordPrompt(false);
-              setPassword("");
-              setPasswordError(null);
-            }}
-          >
-            Cancel
-          </button>
+            <button
+              className="btn-cancel"
+              onClick={() => {
+                setShowPasswordPrompt(false);
+                setPassword("");
+                setPasswordError(null);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
 
-      <div className="mt-3">
+      <div style={{ marginTop: "2rem" }}>
         <button
-          className="btn btn-outline-primary"
+          className="btn-back"
           onClick={() => navigate("/")}
         >
           Back to Home

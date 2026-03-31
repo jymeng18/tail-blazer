@@ -4,19 +4,24 @@
 
 import { useReports } from "../hooks";
 import ReportMap from "./ReportMap";
+import "../styles/MapPage.css";
 
 function MapPage() {
   const { reports, error } = useReports();
 
   if (error) {
     return (
-      <div className="container mt-4">
-        <div className="alert alert-danger">{error}</div>
+      <div className="map-page-container">
+        <div className="map-page-error">{error}</div>
       </div>
     );
   }
 
-  return <ReportMap reports={reports} />;
+  return (
+    <div className="map-page-container">
+      <ReportMap reports={reports} />
+    </div>
+  );
 }
 
 export default MapPage;

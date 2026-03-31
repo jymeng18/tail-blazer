@@ -1,0 +1,116 @@
+.report-form-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 3px solid #a9d6e5;
+  box-shadow: 0 4px 10px rgba(135, 206, 235, 0.2);
+}
+
+.report-form-container h2 {
+  color: #5dade2;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.form-section {
+  margin-bottom: 1.8rem;
+}
+
+.form-section label {
+  display: block;
+  color: #576574;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #d6eaf8;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  background: #fdfdfd;
+  transition: all 0.1s ease;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.form-section textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.location-picker-wrapper {
+  margin-bottom: 1rem;
+}
+
+.address-preview {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #ebf5fb;
+  border: 2px dashed #85c1e9;
+  border-radius: 12px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.address-preview strong {
+  color: #3498db;
+}
+
+.form-error {
+  padding: 1.2rem;
+  background: #ff4757;
+  color: #ffffff;
+  border-radius: 12px;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1.2rem;
+  background: #1dd1a1;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(29, 209, 161, 0.3);
+  transition: all 0.1s ease;
+  margin-top: 1rem;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(29, 209, 161, 0.3);
+}
+
+.submit-button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(29, 209, 161, 0.3);
+}
+
+.submit-button:disabled {
+  background: #d6eaf8;
+  box-shadow: 0 3px 8px rgba(214, 234, 248, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.photo-upload-hint {
+  font-size: 0.95rem;
+  color: #8395a7;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}

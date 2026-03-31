@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AnimalType, ReportStatus, type ReportFormData } from "../types";
 import { reverseGeocode, saveReport, uploadImage, hashPassword } from "../services";
 import LocationPicker from "./LocationPicker";
+import "../styles/ReportForm.css";
 
 function ReportForm() {
   const navigate = useNavigate();
@@ -121,36 +122,36 @@ function ReportForm() {
   }
 
   return (
-    <section className="container mt-4">
+    <section className="report-form-container">
       <h2>Report a Lost Pet</h2>
 
       {error && (
-        <div className="alert alert-danger" role="alert">
+        <div className="form-error">
           {error}
         </div>
       )}
 
-      {/* Pet Name */}
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Animal Name</label>
+        {/* Pet Name */}
+        <div className="form-section">
+          <label>Animal Name *</label>
           <input
             type="text"
-            className="form-control"
             name="animalName"
             value={formData.animalName}
             onChange={handleInputChange}
+            required
           />
         </div>
 
         {/* Pet Type */}
-        <div className="mb-3">
-          <label className="form-label">Animal Type</label>
+        <div className="form-section">
+          <label>Animal Type *</label>
           <select
-            className="form-select"
             name="animalType"
             value={formData.animalType}
             onChange={handleInputChange}
+            required
           >
             <option value={AnimalType.Dog}>Dog</option>
             <option value={AnimalType.Cat}>Cat</option>
@@ -161,71 +162,71 @@ function ReportForm() {
         </div>
 
         {/* Pet Photo */}
-        <div className="mb-3">
-          <label className="form-label">Photo</label>
+        <div className="form-section">
+          <label>Photo (Optional)</label>
           <input
             type="file"
-            className="form-control"
             accept="image/*"
             onChange={handleFileChange}
           />
+          <div className="photo-upload-hint">
+            Uploading a photo helps others identify your pet
+          </div>
         </div>
 
         {/* Pet Desc */}
-        <div className="mb-3">
-          <label className="form-label">Description</label>
+        <div className="form-section">
+          <label>Description *</label>
           <textarea
-            className="form-control"
             name="desc"
             value={formData.desc || ""}
-            rows={3}
             onChange={handleInputChange}
+            placeholder="Describe your pet's appearance, behavior, or any distinguishing features..."
+            required
           />
         </div>
 
         {/* Owner Contact Info */}
-        <div className="mb-3">
-          <label className="form-label">Contact Information</label>
+        <div className="form-section">
+          <label>Contact Information *</label>
           <input
             type="text"
-            className="form-control"
             name="contactInfo"
             value={formData.contactInfo}
             onChange={handleInputChange}
             placeholder="Phone number or email"
+            required
           />
         </div>
 
         {/* Leaflet Map */}
-        <div className="mb-3">
-          <label className="form-label">
-            Last Seen Location (click on map)
-          </label>
-          <LocationPicker onLocationSelection={handleLocationSelect} />
+        <div className="form-section">
+          <label>Last Seen Location (click on map) *</label>
+          <div className="location-picker-wrapper">
+            <LocationPicker onLocationSelection={handleLocationSelect} />
+          </div>
 
-          {/* If addressPreview is falsy then dont render this */}
-          {addressPreview ? (
-            <div className="mt-2 text-muted">
+          {addressPreview && (
+            <div className="address-preview">
               <strong>Selected Address:</strong> {addressPreview}
             </div>
-          ) : null}
+          )}
         </div>
 
         {/* Password For Post */}
-        <div className="mb-3">
-          <label className="form-label">
-            Password (to mark as found later)
-          </label>
+        <div className="form-section">
+          <label>Password (to mark as found later) *</label>
           <input
             type="password"
-            className="form-control"
             name="password"
             value={formData.password}
             onChange={handleInputChange}
+            placeholder="Choose a password to manage this report"
+            required
           />
         </div>
 
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className="submit-button" disabled={loading}>
           {loading ? "Submitting..." : "Submit Report"}
         </button>
       </form>
