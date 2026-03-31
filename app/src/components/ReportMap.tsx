@@ -19,7 +19,7 @@ function ReportMap({ reports }: ReportMapProps) {
   return (
     <div className="map-container">
       <MapContainer
-        center={[51.505, -0.09]}
+        center={[49.2784, -122.9172]}
         zoom={12}
         className="map-wrapper"
       >

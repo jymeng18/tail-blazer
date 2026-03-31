@@ -35,7 +35,7 @@ function LocationMarker({ onLocationSelection }: LocationPickerProps) {
 function LocationPicker({ onLocationSelection }: LocationPickerProps) {
   return (
     <MapContainer
-      center={[51.505, -0.09]}
+      center={[49.2784, -122.9172]}
       zoom={12}
       className="location-picker-container"
     >
