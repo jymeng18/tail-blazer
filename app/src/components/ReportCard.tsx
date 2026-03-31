@@ -12,37 +12,39 @@ interface ReportCardProps {
 
 function ReportCard({ report }: ReportCardProps) {
   const isFound = report.status === ReportStatus.Found;
-  const statusBadgeClass = isFound ? 'bg-success' : 'bg-warning text-dark';
+  const statusClass = isFound ? 'status-badge found' : 'status-badge lost';
   const statusText = isFound ? 'Found' : 'Lost';
 
   return (
-    <div className="card h-100">
-      <img
-        src={report.animalPhotoURL}
-        className="card-img-top"
-        alt={report.animalName}
-      />
+    <div className="report-card">
+      {report.animalPhotoURL && (
+        <img
+          src={report.animalPhotoURL}
+          className="report-card-image"
+          alt={report.animalName}
+        />
+      )}
       
-      <div className="card-body">
-        <h5 className="card-title">{report.animalName}</h5>
+      <div className="report-card-content">
+        <h3 className="report-card-title">{report.animalName}</h3>
         
-        <p className="card-text">
-          <span className={`badge ${statusBadgeClass}`}>
+        <div className="report-card-badges">
+          <span className={statusClass}>
             {statusText}
           </span>
-          {" "}
-          <span className="badge bg-secondary">
+          <span className="animal-type-badge">
             {report.animalType}
           </span>
-        </p>
+        </div>
 
         {report.location && (
-          <p className="card-text text-muted small">
-            Last seen: {report.location.address}
-          </p>
+          <div className="report-card-location">
+            <strong>Last Seen:</strong>
+            <p>{report.location.address}</p>
+          </div>
         )}
 
-        <Link to={`/report/${report.id}`} className="btn btn-primary btn-sm">
+        <Link to={`/report/${report.id}`} className="btn-view-details">
           View Details
         </Link>
       </div>

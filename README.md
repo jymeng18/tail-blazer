@@ -42,5 +42,5 @@ A fully client-side React application for reporting and finding lost pets. Built
 This project was developed with the assistance of GitHub Copilot. The AI was used to:
 - Generate React component boilerplate
 - Fix TypeScript type issues
-
+- Generate CSS Designs
 

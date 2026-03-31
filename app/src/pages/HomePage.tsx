@@ -51,7 +51,7 @@ function HomePage() {
         <div className="container text-center mt-5">
           <div className="spinner-border text-primary" role="status"></div>
           <div>
-            <span className="load-msgs">Loading Reports...</span>
+            <span className="">Loading Reports...</span>
           </div>
         </div>
       )}
@@ -68,23 +68,34 @@ function HomePage() {
       {viewMode === "map" && <MapPage />}
 
       {viewMode === "list" && (
-        <div className="container list-view my-4">
-          {/* Filter controls */}
-          <FilterControls filters={filters} onFilterChange={setFilters} />
-
-          <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {filterReports(reports).map((report) => (
-              <div key={report.id} className="col">
-                <ReportCard report={report} />
-              </div>
-            ))}
-          </div>
-
-          {reports.length === 0 && (
-            <div className="alert alert-info text-center" role="alert">
-              No reports found.
+        <div className="list-view">
+          <div className="list-container">
+            <div className="list-container-header">
+              <FilterControls filters={filters} onFilterChange={setFilters} />
             </div>
-          )}
+
+            <div className="report-cards-grid">
+              {filterReports(reports).map((report) => (
+                <ReportCard key={report.id} report={report} />
+              ))}
+            </div>
+
+            {/* Filter shows no results  */}
+            {filterReports(reports).length === 0 && reports.length > 0 && (
+              <div className="empty-state">
+                <h3>No Matching Reports</h3>
+                <p>Try adjusting your filters to see more results.</p>
+              </div>
+            )}
+
+            {/* zero reports in jsonbin */}
+            {reports.length === 0 && (
+              <div className="empty-state">
+                <h3>No Reports Yet</h3>
+                <p>Be the first to report a missing pet!</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>

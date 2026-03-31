@@ -30,7 +30,49 @@
   box-shadow: 0 1px 3px rgba(135, 206, 235, 0.3);
 }
 
-.load-msgs {
-  
+.list-view {
+  padding: 2rem;
+  background: #f0f8ff;
+  min-height: calc(100vh - 200px);
+}
+
+.list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 3px solid #a9d6e5;
+  box-shadow: 0 4px 10px rgba(135, 206, 235, 0.2);
+  padding: 2rem;
+}
+
+.list-container-header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px dashed #d6eaf8;
+}
+
+.report-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.empty-state h3 {
+  color: #5dade2;
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: #576574;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
