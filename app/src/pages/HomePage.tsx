@@ -3,15 +3,37 @@
  * and the location markers for missing pets
  */
 import { useState } from "react";
-import { MapPage, ReportCard } from "../components";
+import { FilterControls, MapPage, ReportCard } from "../components";
 import { useReports } from "../hooks";
 import "../styles/HomePage.css";
+import type { AnimalReport } from "../types";
 
 function HomePage() {
   const { reports, loading, error } = useReports();
 
   // Users can see in map or view mode
   const [viewMode, setViewMode] = useState<"map" | "list">("map");
+
+  // Filter controls
+  const [filters, setFilters] = useState({
+    animalType: "all",
+    status: "all",
+  });
+
+  function filterReports(reportList: AnimalReport[]): AnimalReport[] {
+    let filtered = reportList;
+
+    if (filters.animalType !== "all") {
+      filtered = filtered.filter(
+        (report) => report.animalType === filters.animalType,
+      );
+    }
+
+    if (filters.status !== "all") {
+      filtered = filtered.filter((report) => report.status === filters.status);
+    }
+    return filtered;
+  }
 
   if (error) {
     return (
@@ -48,9 +70,10 @@ function HomePage() {
       {viewMode === "list" && (
         <div className="container list-view my-4">
           {/* Filter controls */}
+          <FilterControls filters={filters} onFilterChange={setFilters} />
 
           <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {reports.map((report) => (
+            {filterReports(reports).map((report) => (
               <div key={report.id} className="col">
                 <ReportCard report={report} />
               </div>
