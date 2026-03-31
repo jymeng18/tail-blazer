@@ -2,6 +2,7 @@
  * Card for each report
  */
 
+import "../styles/ReportCard.css"
 import { ReportStatus, type AnimalReport } from "../types";
 import { Link } from "react-router-dom";
 
@@ -37,7 +38,7 @@ function ReportCard({ report }: ReportCardProps) {
 
         {report.location && (
           <p className="card-text text-muted small">
-            {report.location.address}
+            Last seen: {report.location.address}
           </p>
         )}
 
